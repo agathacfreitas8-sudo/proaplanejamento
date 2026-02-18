@@ -1,2 +1,743 @@
-# proaplanejamento
-Site Proa
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proa Planejamento | Consultoria Financeira</title>
+    <meta name="description" content="Organize sua vida financeira com clareza e estratégia. Consultoria personalizada para você alcançar seus objetivos.">
+    
+    <!-- Fontes: Montserrat (Corpo) e Poppins (Títulos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- VARIÁVEIS DE COR DA MARCA --- */
+        :root {
+            --color-primary: #1E293B;  /* Azul Escuro Profundo (Texto/Titulos) */
+            --color-secondary: #475569; /* Cinza Ardósia (Parágrafos) */
+            --color-accent: #F5DF80;    /* Amarelo Proa (Destaques) */
+            --color-highlight: #5C8FD6; /* Azul Claro (Links/Ícones) */
+            --color-bg-light: #F8FAFC;  /* Fundo Claro */
+            --color-white: #FFFFFF;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-secondary);
+            line-height: 1.6;
+            background-color: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- UTILITÁRIOS --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-accent { color: var(--color-highlight); }
+        
+        .bg-light { background-color: var(--color-bg-light); }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px; /* Redondo moderno */
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            box-shadow: 0 4px 14px rgba(245, 223, 128, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 223, 128, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* --- TIPOGRAFIA DESTAQUE --- */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Detalhe amarelo abaixo dos títulos */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--color-accent);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        /* --- HEADER & NAVEGAÇÃO --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            padding: 20px 0;
+            transition: padding 0.3s;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--color-accent);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--color-secondary);
+        }
+
+        nav a:hover {
+            color: var(--color-highlight);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, #fff, #f8fafc);
+            position: relative;
+        }
+
+        /* Elemento decorativo de fundo */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: #F8FAFC;
+            z-index: 0;
+            border-bottom-left-radius: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: rotate(-2deg);
+            border: 8px solid #fff;
+            background-color: #e2e8f0; /* Placeholder color while loading */
+            min-height: 400px;
+        }
+        
+        .image-frame img {
+            transition: transform 0.5s ease;
+        }
+        
+        .image-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- SOBRE (Grid 2 Colunas) --- */
+        .two-col-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background-color: #e2e8f0;
+            min-height: 400px;
+        }
+
+        /* --- SERVIÇOS (Cards) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-highlight);
+        }
+
+        .service-card .icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- METODOLOGIA (Timeline) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        /* Linha vertical */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 20px; /* Alinhamento à esquerda para mobile friendly */
+        }
+
+        .timeline-item {
+            padding: 10px 40px 40px 60px;
+            position: relative;
+            background-color: inherit;
+            width: 100%;
+        }
+
+        /* Círculo do passo */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: auto;
+            left: 11px;
+            background-color: var(--color-white);
+            border: 4px solid var(--color-accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        /* Ajuste para desktop centralizado */
+        @media (min-width: 768px) {
+            .timeline::after { left: 50%; margin-left: -1px; }
+            .timeline-item { width: 50%; padding: 10px 40px; }
+            .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+            .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+            .timeline-item:nth-child(odd)::after { left: auto; right: -10px; }
+            .timeline-item:nth-child(even)::after { left: -10px; }
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            color: var(--color-highlight);
+        }
+
+        /* --- PÚBLICO ALVO --- */
+        .check-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .check-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--color-highlight);
+            background: rgba(92, 143, 214, 0.1);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+
+        /* --- CTA FINAL (Parallax) --- */
+        .cta-section {
+            background-image: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.9)), url('http://googleusercontent.com/image_collection/image_retrieval/9113876330905263486');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            color: #cbd5e1;
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-bg-light);
+            padding: 80px 0 30px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--color-accent);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .contact-pill i { color: var(--color-highlight); }
+
+        .copyright {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero { padding-top: 120px; }
+            .hero-grid, .two-col-section { grid-template-columns: 1fr; gap: 40px; }
+            .hero::before { width: 100%; height: 30%; bottom: 0; top: auto; border-radius: 0; }
+            .hero-image { order: -1; margin-bottom: 20px; }
+            
+            .mobile-toggle { display: block; }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-lg);
+            }
+            nav ul.active { display: flex; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            .cta-content h2 { font-size: 2rem; }
+            .footer-contact { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">proa<span>.</span></a>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#sobre" onclick="toggleMenu()">Sobre</a></li>
+                    <li><a href="#servicos" onclick="toggleMenu()">O que fazemos</a></li>
+                    <li><a href="#metodo" onclick="toggleMenu()">Como funciona</a></li>
+                    <li><a href="#contato" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Agendar Conversa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Organize sua vida financeira com clareza e estratégia.</h1>
+                    <p>Um atendimento individualizado, com foco no que você precisa agora e no que quer conquistar nos próximos anos.</p>
+                    <a href="#contato" class="btn btn-primary">Agende uma conversa gratuita</a>
+                </div>
+                <div class="hero-image">
+                    <div class="image-frame">
+                        <!-- Imagem: Mesa limpa/Finanças -->
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/5448042664068055867" 
+                             alt="Organização Financeira"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x600/f1f5f9/1e293b?text=Organiza%C3%A7%C3%A3o+Financeira';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="section-padding bg-light">
+        <div class="container">
+            <div class="two-col-section">
+                <div class="about-image">
+                    <!-- Imagem: Consultor conversando -->
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/13304298699485696974" 
+                         alt="Consultoria Humanizada" style="height: 100%; width: 100%; object-fit: cover;"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x800/1e293b/ffffff?text=Consultoria+Humanizada';">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">Estratégia, escuta e direção.</h2>
+                    <p>A PROA é uma consultoria de Planejamento Financeiro que trabalha com pessoas reais, que têm metas, dúvidas, rotina e urgências.</p>
+                    <br>
+                    <p>A gente estrutura, projeta e acompanha seu caminho financeiro com base no que você tem e no que você quer construir.</p>
+                    <br>
+                    <p style="font-weight: 600; color: var(--color-primary); border-left: 4px solid var(--color-accent); padding-left: 15px;">Sem fórmulas mágicas, sem promessas rasas. Com metodologia, conversa e clareza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">O que entregamos na prática</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Planejamento Financeiro Pessoal</h3>
+                    <p>Diagnóstico e plano de ação completo para organizar e direcionar sua vida financeira.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <h3>Revisão de Investimentos</h3>
+                    <p>Avaliação técnica e comportamental dos seus investimentos, com foco em propósito e eficiência.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Consultoria para Autônomos</h3>
+                    <p>Gestão de fluxo de caixa, sazonalidade, precificação e proteção da sua renda variável.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <h3>Planejamento de Sucessão</h3>
+                    <p>Cuidar do futuro exige preparação. Aqui, você entende como proteger quem depende de você.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodologia Section -->
+    <section id="metodo" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Atendimento direto, sem enrolação.</h2>
+                <p>Nosso processo é desenhado para gerar valor desde o primeiro encontro.</p>
+            </div>
+            
+            <div class="timeline">
+                <!-- Passo 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1. Você agenda uma conversa gratuita</h3>
+                        <p>Pra entender o momento atual, os desafios e onde você quer chegar.</p>
+                    </div>
+                </div>
+                <!-- Passo 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2. A gente monta o seu plano de ação</h3>
+                        <p>Combinamos técnica e estratégia, de acordo com sua realidade e objetivos.</p>
+                    </div>
+                </div>
+                <!-- Passo 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>3. Você decide o próximo passo</h3>
+                        <p>Acompanhamos sua evolução ou entregamos tudo para você seguir com autonomia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Público Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="two-col-section">
+                <div>
+                    <h2 class="section-title" style="font-size: 2rem;">Não importa se você ganha R$ 3 mil ou R$ 30 mil.</h2>
+                    <p class="text-accent" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 30px;">O que importa é o que você faz com isso.</p>
+                    
+                    <ul class="check-list">
+                        <li>Pessoas que querem entender para onde o dinheiro está indo.</li>
+                        <li>Profissionais liberais/autônomos que vivem altos e baixos de renda.</li>
+                        <li>Famílias que estão construindo patrimônio e precisam de organização.</li>
+                        <li>Quem já investe, mas não sabe se está no caminho certo.</li>
+                        <li>Quem quer sair do piloto automático financeiro.</li>
+                    </ul>
+                </div>
+                <div class="image-frame" style="transform: rotate(2deg);">
+                    <!-- Imagem: Público diverso -->
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/9802240472920687006" 
+                         alt="Profissionais Diversos"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5df80/1e293b?text=Nossos+Clientes';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="contato" class="cta-section section-padding">
+        <div class="container">
+            <div class="cta-content">
+                <h2>É possível ter tranquilidade com dinheiro.</h2>
+                <p>Mas não acontece por acaso. Se você quer parar de reagir ao dinheiro e começar a tomar decisões com estratégia, clareza e liberdade, a hora de começar é agora.</p>
+                <br>
+                <!-- Card de Formulário -->
+                <div style="background: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+                    <h3 style="color: var(--color-primary); margin-bottom: 20px;">Vamos conversar?</h3>
+                    <form onsubmit="event.preventDefault(); alert('Obrigado! Em breve entraremos em contato.');">
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label style="color: #64748b; font-size: 0.9rem;">Seu Nome</label>
+                            <input type="text" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;" required>
+                        </div>
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label style="color: #64748b; font-size: 0.9rem;">Seu E-mail</label>
+                            <input type="email" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Agendar Conversa Gratuita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Imagem de fundo fallback (se a principal falhar, o CSS cuida da cor, mas aqui garantimos acessibilidade) -->
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/9113876330905263486" style="display:none;" onerror="document.querySelector('.cta-section').style.backgroundImage = 'linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.9)), url(https://placehold.co/1920x1080/1e293b/5c8fd6?text=Background)';">
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">proa<span>.</span></div>
+            
+            <div class="footer-contact">
+                <a href="#" class="contact-pill"><i class="fa-brands fa-whatsapp"></i> (XX) 99999-9999</a>
+                <a href="#" class="contact-pill"><i class="fa-regular fa-envelope"></i> contato@proaplanejamento.com.br</a>
+                <a href="#" class="contact-pill"><i class="fa-brands fa-instagram"></i> @proaplanejamento</a>
+            </div>
+            
+            <p style="font-size: 1.25rem; font-weight: 700; color: var(--color-highlight); margin-bottom: 30px;">Planejamento é ação com direção.</p>
+            
+            <div class="copyright">
+                &copy; 2025 Proa Planejamento. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+            
+            // Estilo para o menu mobile quando ativo
+            if (nav.classList.contains('active')) {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '80px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.display = ''; // Volta ao padrão do CSS
+            }
+        }
+    </script>
+</body>
+</html>
