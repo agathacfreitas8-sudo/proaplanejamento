@@ -695,17 +695,27 @@
                 <!-- Card de Formulário -->
                 <div style="background: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
                     <h3 style="color: var(--color-primary); margin-bottom: 20px;">Vamos conversar?</h3>
-                    <form onsubmit="event.preventDefault(); alert('Obrigado! Em breve entraremos em contato.');">
-                        <div style="text-align: left; margin-bottom: 15px;">
-                            <label style="color: #64748b; font-size: 0.9rem;">Seu Nome</label>
-                            <input type="text" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;" required>
-                        </div>
-                        <div style="text-align: left; margin-bottom: 15px;">
-                            <label style="color: #64748b; font-size: 0.9rem;">Seu E-mail</label>
-                            <input type="email" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Agendar Conversa Gratuita</button>
-                    </form>
+                   <form action="https://formsubmit.co/proa@proaplanejamento.com.br" method="POST">
+
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://proaplanejamento.vercel.app/obrigado.html">
+
+    <div style="text-align: left; margin-bottom: 15px;">
+        <label>Seu Nome</label>
+        <input type="text" name="nome" required
+            style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
+    </div>
+
+    <div style="text-align: left; margin-bottom: 15px;">
+        <label>Seu E-mail</label>
+        <input type="email" name="email" required
+            style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        Agendar Conversa Gratuita
+    </button>
+</form>
                 </div>
             </div>
         </div>
