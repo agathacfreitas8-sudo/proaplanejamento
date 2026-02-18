@@ -252,14 +252,16 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            transform: rotate(-2deg);
             border: 8px solid #fff;
             background-color: #e2e8f0; /* Placeholder color while loading */
             min-height: 400px;
         }
         
         .image-frame img {
-            transition: transform 0.5s ease;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
         }
         
         .image-frame:hover img {
@@ -271,7 +273,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            align-items: center;
+            align-items: stretch;
         }
 
         .about-image {
@@ -667,7 +669,7 @@
                         <li>Quem quer sair do piloto automático financeiro.</li>
                     </ul>
                 </div>
-                <div class="image-frame" style="transform: rotate(2deg);">
+                <div class="image-frame">
                     <!-- Imagem: Público diverso -->
                     <img src="Assets/nossos-clientes.jpg.jpg" 
                          alt="Profissionais Diversos"
