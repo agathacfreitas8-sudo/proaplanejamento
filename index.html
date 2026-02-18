@@ -64,11 +64,11 @@
             list-style: none;
         }
 
+        /* ✅ CORREÇÃO: aqui estava "img { img { ...", quebrando o CSS inteiro */
         img {
-            img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* --- UTILITÁRIOS --- */
@@ -249,31 +249,31 @@
         }
 
         .image-frame{
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  transform: rotate(-2deg);
-  
-  /* SEM borda/sombra/fundo */
-  border: 0;
-  box-shadow: none;
-  background: transparent;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            transform: rotate(-2deg);
+            
+            /* SEM borda/sombra/fundo */
+            border: 0;
+            box-shadow: none;
+            background: transparent;
 
-  /* Isso resolve o “quadrado” e impede área sobrando */
-  aspect-ratio: 4 / 3;  /* formato padrão bonito */
-}
+            /* impede espaço sobrando */
+            aspect-ratio: 4 / 3;
+        }
 
-.image-frame img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* imagem inteira */
-  display: block;
-}
+        .image-frame img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
 
-/* tira o zoom que está causando sensação de corte */
-.image-frame:hover img{
-  transform: none;
-}
+        .image-frame:hover img{
+            transform: none;
+        }
+
         /* --- SOBRE (Grid 2 Colunas) --- */
         .two-col-section {
             display: grid;
@@ -283,18 +283,19 @@
         }
 
         .about-image {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  background-color: #e2e8f0;
-}
-.about-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background-color: #e2e8f0;
         }
+
+        .about-image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* ✅ CORREÇÃO: aqui tinha um "}" sobrando no seu código */
 
         /* --- SERVIÇOS (Cards) --- */
         .services-grid {
@@ -348,7 +349,6 @@
             margin: 60px auto 0;
         }
 
-        /* Linha vertical */
         .timeline::after {
             content: '';
             position: absolute;
@@ -356,7 +356,7 @@
             background-color: #e2e8f0;
             top: 0;
             bottom: 0;
-            left: 20px; /* Alinhamento à esquerda para mobile friendly */
+            left: 20px;
         }
 
         .timeline-item {
@@ -366,7 +366,6 @@
             width: 100%;
         }
 
-        /* Círculo do passo */
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -381,7 +380,6 @@
             z-index: 1;
         }
         
-        /* Ajuste para desktop centralizado */
         @media (min-width: 768px) {
             .timeline::after { left: 50%; margin-left: -1px; }
             .timeline-item { width: 50%; padding: 10px 40px; }
@@ -557,7 +555,6 @@
                 </div>
                 <div class="hero-image">
                     <div class="image-frame">
-                        <!-- Imagem: Mesa limpa/Finanças -->
                         <img src="Assets/organizacao-financeira.jpg.jpg" 
                              alt="Organização Financeira"
                              onerror="this.onerror=null; this.src='https://placehold.co/800x600/f1f5f9/1e293b?text=Organiza%C3%A7%C3%A3o+Financeira';">
@@ -572,11 +569,10 @@
         <div class="container">
             <div class="two-col-section">
                 <div class="about-image">
-                    <!-- Imagem: Consultor conversando -->
-<img src="Assets/consultoria-humanizada.jpg.jpg"
-     alt="Consultoria Humanizada"
-     style="width: 100%; height: auto; display: block; border-radius: 20px;"
-     onerror="this.onerror=null; this.src='https://placehold.co/600x800/1e293b/ffffff?text=Consultoria+Humanizada';">
+                    <img src="Assets/consultoria-humanizada.jpg.jpg"
+                        alt="Consultoria Humanizada"
+                        style="width: 100%; height: auto; display: block; border-radius: 20px;"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x800/1e293b/ffffff?text=Consultoria+Humanizada';">
                 </div>
                 <div class="about-text">
                     <h2 class="section-title">Estratégia, escuta e direção.</h2>
@@ -597,25 +593,21 @@
                 <h2 class="section-title">O que entregamos na prática</h2>
             </div>
             <div class="services-grid">
-                <!-- Card 1 -->
                 <div class="service-card">
                     <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
                     <h3>Planejamento Financeiro Pessoal</h3>
                     <p>Diagnóstico e plano de ação completo para organizar e direcionar sua vida financeira.</p>
                 </div>
-                <!-- Card 2 -->
                 <div class="service-card">
                     <div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                     <h3>Revisão de Investimentos</h3>
                     <p>Avaliação técnica e comportamental dos seus investimentos, com foco em propósito e eficiência.</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="service-card">
                     <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
                     <h3>Consultoria para Autônomos</h3>
                     <p>Gestão de fluxo de caixa, sazonalidade, precificação e proteção da sua renda variável.</p>
                 </div>
-                <!-- Card 4 -->
                 <div class="service-card">
                     <div class="icon"><i class="fa-solid fa-shield-heart"></i></div>
                     <h3>Planejamento de Sucessão</h3>
@@ -634,21 +626,18 @@
             </div>
             
             <div class="timeline">
-                <!-- Passo 1 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>1. Você agenda uma conversa gratuita</h3>
                         <p>Pra entender o momento atual, os desafios e onde você quer chegar.</p>
                     </div>
                 </div>
-                <!-- Passo 2 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>2. A gente monta o seu plano de ação</h3>
                         <p>Combinamos técnica e estratégia, de acordo com sua realidade e objetivos.</p>
                     </div>
                 </div>
-                <!-- Passo 3 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>3. Você decide o próximo passo</h3>
@@ -676,7 +665,6 @@
                     </ul>
                 </div>
                 <div class="image-frame">
-                    <!-- Imagem: Público diverso -->
                     <img src="Assets/nossos-clientes.jpg.jpg" 
                          alt="Profissionais Diversos"
                          onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5df80/1e293b?text=Nossos+Clientes';">
@@ -692,34 +680,34 @@
                 <h2>É possível ter tranquilidade com dinheiro.</h2>
                 <p>Mas não acontece por acaso. Se você quer parar de reagir ao dinheiro e começar a tomar decisões com estratégia, clareza e liberdade, a hora de começar é agora.</p>
                 <br>
-                <!-- Card de Formulário -->
+
                 <div style="background: white; max-width: 500px; margin: 0 auto; padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
                     <h3 style="color: var(--color-primary); margin-bottom: 20px;">Vamos conversar?</h3>
-                   <form action="https://formsubmit.co/proa@proaplanejamento.com.br" method="POST">
 
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://proaplanejamento.vercel.app/obrigado.html">
+                    <form action="https://formsubmit.co/proa@proaplanejamento.com.br" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://proaplanejamento.vercel.app/obrigado.html">
 
-    <div style="text-align: left; margin-bottom: 15px;">
-        <label>Seu Nome</label>
-        <input type="text" name="nome" required
-            style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
-    </div>
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label style="color: #64748b; font-size: 0.9rem;">Seu Nome</label>
+                            <input type="text" name="nome" required
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
+                        </div>
 
-    <div style="text-align: left; margin-bottom: 15px;">
-        <label>Seu E-mail</label>
-        <input type="email" name="email" required
-            style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
-    </div>
+                        <div style="text-align: left; margin-bottom: 15px;">
+                            <label style="color: #64748b; font-size: 0.9rem;">Seu E-mail</label>
+                            <input type="email" name="email" required
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 5px;">
+                        </div>
 
-    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-        Agendar Conversa Gratuita
-    </button>
-</form>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                            Agendar Conversa Gratuita
+                        </button>
+                    </form>
                 </div>
+
             </div>
         </div>
-        
     </section>
 
     <!-- Footer -->
@@ -741,13 +729,11 @@
         </div>
     </footer>
 
-    <!-- Script Menu Mobile -->
     <script>
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             nav.classList.toggle('active');
             
-            // Estilo para o menu mobile quando ativo
             if (nav.classList.contains('active')) {
                 nav.style.display = 'flex';
                 nav.style.flexDirection = 'column';
@@ -759,7 +745,7 @@
                 nav.style.padding = '20px';
                 nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
             } else {
-                nav.style.display = ''; // Volta ao padrão do CSS
+                nav.style.display = '';
             }
         }
     </script>
