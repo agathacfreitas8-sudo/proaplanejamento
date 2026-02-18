@@ -249,12 +249,23 @@
         }
 
         .image-frame {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 8px solid #fff;
-            background-color: #e2e8f0; /* Placeholder color while loading */
-            min-height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transform: rotate(-2deg);
+    border: 8px solid #fff;
+    background-color: #e2e8f0;
+
+    /* CORREÇÃO DO CORTE */
+    min-height: auto;
+}
+
+.image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
         }
         
         .image-frame img {
