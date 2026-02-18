@@ -251,13 +251,12 @@
         .image-frame {
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
     transform: rotate(-2deg);
-    border: 8px solid #fff;
-    background-color: #e2e8f0;
 
-    /* CORREÇÃO DO CORTE */
-    min-height: auto;
+    /* tira borda, sombra e fundo */
+    border: none;
+    box-shadow: none;
+    background: transparent;
 }
 
 .image-frame img {
@@ -265,14 +264,6 @@
     height: auto;
     display: block;
     object-fit: contain;
-}
-        }
-        
-        .image-frame img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.5s ease;
         }
         
         .image-frame:hover img {
