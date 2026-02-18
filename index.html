@@ -65,10 +65,10 @@
         }
 
         img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
+            img {
+    max-width: 100%;
+    height: auto;
+    display: block;
         }
 
         /* --- UTILITÁRIOS --- */
@@ -248,28 +248,32 @@
             position: relative;
         }
 
-        .image-frame {
-    border-radius: 20px;
-    overflow: hidden;
-    transform: rotate(-2deg);
+        .image-frame{
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: rotate(-2deg);
+  
+  /* SEM borda/sombra/fundo */
+  border: 0;
+  box-shadow: none;
+  background: transparent;
 
-    /* tira borda, sombra e fundo */
-    border: none;
-    box-shadow: none;
-    background: transparent;
+  /* Isso resolve o “quadrado” e impede área sobrando */
+  aspect-ratio: 4 / 3;  /* formato padrão bonito */
 }
 
-.image-frame img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-        }
-        
-        .image-frame:hover img {
-            transform: scale(1.05);
-        }
+.image-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* imagem inteira */
+  display: block;
+}
 
+/* tira o zoom que está causando sensação de corte */
+.image-frame:hover img{
+  transform: none;
+}
         /* --- SOBRE (Grid 2 Colunas) --- */
         .two-col-section {
             display: grid;
